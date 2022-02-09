@@ -9,44 +9,45 @@ import Content from './content';
 import '../css/App.css';
 
 const App = () => {
-	const [items, setItems] = useState([]);
+	const [items, setItems] = useState({});
 	const [tab, setTab] = useState('');
-	const [error, setError] = useState('');
+	const [error, setError] = useState({});
 
-	const setupApp = async data => {
-		const sortedCards = await sortCards(data);
-		setTab(sortedCards[0]);
+	const setupApp =  data => {
+		const sortedCards = sortCards(data);
+		setTab(Object.keys(sortedCards)[0]);
 		setItems(sortedCards);
 	}
 
 	useEffect(() => {
-		if (items.length === 0) {
+		// on first load, we fetch the card list
+		if (Object.keys(items).length === 0 && tab === '') {
 			fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php')
 				.then(response => response.json())
-				.then(json => {
-					setupApp(json.data);
-				})
+				.then(json => setupApp(json.data))
 				.catch(err => setError(err))
 		}
-	}, [items.length]);
+	}, [items, tab]);
 
 	return (
 		<div className="App">
 			<Header />
-			<SideNav 
-				list={items}
-				currentTab={tab}
-				setTab={tabName => setTab(tabName)}
-			/>
-			{/* {tab !== '' && (
-				<Content
-					items={items[tab]}
-					// setItems={newList => setItems([
-					// 	...items,
-					// 	[tab]: ...newList,
-					// ])}
-				/>
-			)} */}
+			{tab !== '' && Object.keys(items).length > 0 && (
+				<>
+					<SideNav 
+						list={items}
+						currentTab={tab}
+						setTab={tabName => setTab(tabName)}
+					/>
+					<Content
+						items={items[tab]}
+						setItems={newList => setItems({
+							...items,
+							[tab]: newList,
+						})}
+					/>
+				</>
+			)}
 			<Footer />
 		</div>
 	);

@@ -1,10 +1,19 @@
-import '../css/App.css';
+import '../css/side-nav.css';
 
-const SideNav = () => {
+const SideNav = ({ list, currentTab, setTab }) => {
+	const tabItems = Object.keys(list)
 	return (
-		<footer className="App-sideNav">
-			tab list here
-		</footer>
+		<div className="sidenav">
+			{tabItems.map(tab => (
+				<button
+					className={`tab${currentTab === tab ? ' selected' : ''}`}
+					onClick={() => setTab(tab)}
+					key={tab}
+				>
+					{tab}
+				</button>
+			))}
+		</div>
 	);
 }
 

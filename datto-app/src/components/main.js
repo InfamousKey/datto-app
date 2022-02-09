@@ -1,18 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
-	fetchApi
+	sortCards
 } from './methods/methods'
 import Header from './header';
 import Footer from './footer';
 import SideNav from './side-nav';
-import Content from './content'
+import Content from './content';
 import '../css/App.css';
 
 const App = () => {
-	const apiData = fetchApi('https://www.freetogame.com/api/games?platform=pc&sort-by=release-date');
-	console.log(apiData)
-	const [items, setItems] = useState(apiData);
-	const [tab, setTab] = useState(apiData);
+	const [items, setItems] = useState([]);
+	const [tab, setTab] = useState('');
+	const [error, setError] = useState('');
+
+	const setupApp = async data => {
+		const sortedCards = await sortCards(data);
+		setTab(sortedCards[0]);
+		setItems(sortedCards);
+	}
+
+	useEffect(() => {
+		if (items.length === 0) {
+			fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php')
+				.then(response => response.json())
+				.then(json => {
+					setupApp(json.data);
+				})
+				.catch(err => setError(err))
+		}
+	}, [items.length]);
 
 	return (
 		<div className="App">
@@ -22,13 +38,15 @@ const App = () => {
 				currentTab={tab}
 				setTab={tabName => setTab(tabName)}
 			/>
-			<Content
-				items={items[tab]}
-				// setItems={newList => setItems([
-				// 	...items,
-				// 	[tab]: ...newList,
-				// ])}
-			/>
+			{/* {tab !== '' && (
+				<Content
+					items={items[tab]}
+					// setItems={newList => setItems([
+					// 	...items,
+					// 	[tab]: ...newList,
+					// ])}
+				/>
+			)} */}
 			<Footer />
 		</div>
 	);

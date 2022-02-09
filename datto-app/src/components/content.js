@@ -1,9 +1,19 @@
 import '../css/App.css';
 
-const Footer = (items, setItems) => {
+const Footer = ({items, setItems}) => {
+	console.log(items)
 	return (
 		<div className="App-content">
-			{ /* we will do a content map here */ }
+			{items.map(({
+				name,
+				type,
+				desc,
+				race,
+			}) => (
+				<div>
+
+				</div>
+			))}
 		</div>
 	);
 }

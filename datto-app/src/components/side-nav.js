@@ -2,7 +2,7 @@ import '../css/App.css';
 
 const SideNav = () => {
 	return (
-		<footer className="App-footer">
+		<footer className="App-sideNav">
 			tab list here
 		</footer>
 	);

@@ -1,0 +1,9 @@
+.header {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+}
+
+.header img.logo {
+	pointer-events: none;
+}

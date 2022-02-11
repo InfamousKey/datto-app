@@ -2,8 +2,10 @@
 	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
+	height: 80px;
 }
 
 .header img.logo {
+	height: 60px;
 	pointer-events: none;
 }

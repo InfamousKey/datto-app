@@ -6,7 +6,7 @@ import Header from './header';
 import Footer from './footer';
 import SideNav from './side-nav';
 import Content from './content';
-import '../css/App.css';
+import '../css/app.css';
 
 const App = () => {
 	const [items, setItems] = useState({});
@@ -30,11 +30,11 @@ const App = () => {
 	}, [items, tab]);
 
 	return (
-		<div className="App">
+		<div className="app">
 			<Header />
 			{tab !== '' && Object.keys(items).length > 0 && (
-				<>
-					<SideNav 
+				<div className='container'>
+					<SideNav
 						list={items}
 						currentTab={tab}
 						setTab={tabName => setTab(tabName)}
@@ -46,7 +46,7 @@ const App = () => {
 							[tab]: newList,
 						})}
 					/>
-				</>
+				</div>
 			)}
 			<Footer />
 		</div>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import '../css/side-nav.css';
 
 const SideNav = ({ list, currentTab, setTab }) => {
@@ -18,3 +19,9 @@ const SideNav = ({ list, currentTab, setTab }) => {
 }
 
 export default SideNav;
+
+SideNav.propTypes = {
+	list: PropTypes.shape(PropTypes.arrayOf({})).isRequired,
+	currentTab: PropTypes.string.isRequired,
+	setTab: PropTypes.func.isRequired,
+};

@@ -1,5 +1,6 @@
 .sidenav {
 	display: flex;
 	flex-direction: column;
-	width: 200px;
+	flex: 1 1 200px;
+	min-width: 200px;
 }

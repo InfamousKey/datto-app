@@ -5,7 +5,15 @@
 	height: 80px;
 }
 
-.header img.logo {
-	height: 60px;
-	pointer-events: none;
+@media (max-width: 600px) {
+	header img.logo {
+		height: 55px
+	}
+}
+
+@media (min-width: 601px) {
+	.header img.logo {
+		height: 75px;
+		pointer-events: none;
+	}
 }

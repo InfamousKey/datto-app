@@ -21,3 +21,12 @@ export const sortCards = list => {
 	}
 	return sortedCards;
 }
+
+export const truncateDesc = desc => {
+	// return the string if it's less than our desired amount
+	if (desc.length <= 64) {
+		return desc
+	}
+	// return our cut down string with ... added
+	return desc.slice(0, 126) + '...'
+}

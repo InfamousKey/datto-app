@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { truncateDesc } from './methods/methods';
 import Edit from '../images/edit.svg';
 import Delete from '../images/delete.svg';
 import Confirm from '../images/confirm.svg';
@@ -31,56 +32,78 @@ const Content = ({ items, setItems }) => {
 	}
 
 	return (
-		<div className="content">
-			{items.map(({
-				card_images,
-				name,
-				type,
-				desc,
-				race,
-				id,
-			}, index) => (
-				<div key={id}>
-					<img src={card_images[0].image_url_small} alt={name} />
-					{editActive === index && (
-						<div>
-							Name:
-							<input
-								type="textarea"
-								value={editName}
-								onChange={e => setEditName(e.target.value)}
-							/>	
+		<div className='container'>
+			<div className='row'>
+				{items.map(({
+					card_images,
+					name,
+					type,
+					desc,
+					race,
+					id,
+				}, index) => (
+					<div className='card col-sm-6 col-md-3' key={id}>
+						<img className='card-img-top'  src={card_images[0].image_url_small} alt={name} />
+						{editActive === index && (
+							<h5 className='card-title'>
+								Name:
+								<input
+									type='textarea'
+									value={editName}
+									onChange={e => setEditName(e.target.value)}
+								/>	
+							</h5>
+						)}
+						<div className='card-body'>
+							{editActive !== index && (
+								<h5 className='card-title'>Name: {name}</h5>
+							)}
+							<div className='card-text'>
+								<span className='font-weight-bold'>Type: </span>
+								{type}
+							</div>
+							<div className='card-text'>
+								<span className='font-weight-bold'>Race: </span>
+								{race}
+							</div>
+							<div className='card-text' title={desc} >
+								<span className='font-weight-bold'>Description: </span>
+								{truncateDesc(desc)}
+							</div>
 						</div>
-					)}
-					{editActive !== index && (
-						<div>Name: {name}</div>
-					)}
-					<div>Type: {type}</div>
-					<div>Race: {race}</div>
-					<div>Description: {desc}</div>
-					{editActive !== index && (
-						<div
-							onClick={() => {
-								setEditActive(index);
-								setEditName(name);
-							}}
-						>
-							<ReactSVG src={Edit} />
+						<div className='row p-2'>
+							{editActive !== index && (
+								<div
+									onClick={() => {
+										setEditActive(index);
+										setEditName(name);
+									}}
+									className='col-2'
+								>
+									<ReactSVG src={Edit} />
+								</div>
+							)}
+							{editActive === index && (
+								<div
+									onClick={() => updateCard(index)}
+									className='col-2'
+								>
+									<ReactSVG src={Confirm} />
+								</div>
+							)}
+							<div
+								onClick={() => removeItem(index)}
+								className='col-2'
+							>
+								<ReactSVG src={Delete} />
+							</div>
 						</div>
-					)}
-					{editActive === index && (
-						<div onClick={() => updateCard(index)}>
-							<ReactSVG src={Confirm} />
-						</div>
-					)}
-					<div onClick={() => removeItem(index)}>
-						<ReactSVG src={Delete} />
 					</div>
-				</div>
-			))}
-			{items.length === 0 && (
-				<h2>This set contains no cards!</h2>
-			)}
+				))}
+				{items.length === 0 && (
+					<h2>This set contains no cards!</h2>
+				)}
+			</div>
 		</div>
 	);
 }

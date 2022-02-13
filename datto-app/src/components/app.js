@@ -33,7 +33,7 @@ const App = () => {
 		<div className="app">
 			<Header />
 			{tab !== '' && Object.keys(items).length > 0 && (
-				<div className='container'>
+				<div className='app-container'>
 					<SideNav
 						list={items}
 						currentTab={tab}

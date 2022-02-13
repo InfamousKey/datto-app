@@ -71,7 +71,7 @@ const Content = ({ items, setItems }) => {
 								{truncateDesc(desc)}
 							</div>
 						</div>
-						<div className='row p-2'>
+						<div className='row p-2 justify-content-center'>
 							{editActive !== index && (
 								<div
 									onClick={() => {

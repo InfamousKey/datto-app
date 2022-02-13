@@ -21,7 +21,7 @@ const SideNav = ({ list, currentTab, setTab }) => {
 export default SideNav;
 
 SideNav.propTypes = {
-	list: PropTypes.shape(PropTypes.arrayOf({})).isRequired,
+	list: PropTypes.shape().isRequired,
 	currentTab: PropTypes.string.isRequired,
 	setTab: PropTypes.func.isRequired,
 };

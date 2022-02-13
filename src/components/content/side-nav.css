@@ -1,0 +1,9 @@
+.sidenav {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 200px;
+}
+
+.tab {
+	background-color: #daa300;
+}

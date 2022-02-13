@@ -76,21 +76,21 @@ const Content = ({ items, setItems }) => {
 									}}
 									className='col-2'
 								>
-									<img src={Edit} alt='edit' />
+									<img className='action' src={Edit} alt='edit' />
 								</div>
 							) :
 								<div
 									onClick={() => updateCard(index)}
 									className='col-2'
 								>
-									<img src={Confirm} alt='confirm' />
+									<img className='action' src={Confirm} alt='confirm' />
 								</div>
 							}
 							<div
 								onClick={() => removeItem(index)}
 								className='col-2'
 							>
-								<img src={Delete} alt='delete' />
+								<img className='action' src={Delete} alt='delete' />
 							</div>
 						</div>
 					</div>

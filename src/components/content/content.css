@@ -1,3 +1,7 @@
 .content .card {
 	background-color: #f4f4f4;
 }
+
+.content .card .action {
+	cursor: pointer;
+}

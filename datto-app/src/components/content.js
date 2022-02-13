@@ -43,7 +43,7 @@ const Content = ({ items, setItems }) => {
 					id,
 				}, index) => (
 					<div className='card pt-3 mt-3 col-sm-6 col-md-3' key={id}>
-						<img className='card-img-top'  src={card_images[0].image_url_small} alt={name} />
+						<img className='card-img-top'  src={card_images[0].image_url} alt={name} />
 						{editActive === index && (
 							<h5 className='card-title'>
 								Name:

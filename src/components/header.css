@@ -1,5 +1,6 @@
 .header {
 	align-items: flex-start;
+	border-bottom: 1px black solid;
 	display: flex;
 	flex-direction: column;
 	height: 80px;

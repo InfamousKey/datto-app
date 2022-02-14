@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { truncateDesc } from '../methods/methods';
 import Edit from '../../images/edit.svg';
@@ -30,9 +30,14 @@ const Content = ({ items, setItems }) => {
 		setItems(newArr);
 	}
 
+	useEffect(() => {
+		// sets edit to false when we swap between tabs
+		setEditActive(false);
+	}, [items]);
+
 	return (
 		<div className='content container overflow-auto'>
-			<div className='row'>
+			<div className='row justify-content-center'>
 				{items.map(({
 					card_images,
 					name,
@@ -41,7 +46,7 @@ const Content = ({ items, setItems }) => {
 					race,
 					id,
 				}, index) => (
-					<div className='card pt-3 m-5 col-sm-6 col-md-3' key={id}>
+					<div className='card pt-3 m-2 col-sm-6 col-md-3' key={id}>
 						<img className='card-img-top'  src={card_images[0].image_url} alt={name} />
 						<div className='card-body'>
 							{editActive === index ? (

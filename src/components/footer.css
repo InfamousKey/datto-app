@@ -1,5 +1,8 @@
 .footer {
     align-items: center;
+    border-top: 1px black solid;
     display: flex;
     flex-flow: column;
+    height: 80px;
+    justify-content: center;
 }

@@ -54,6 +54,7 @@ const Content = ({ items, setItems }) => {
 									Name:
 									<input
 										type='textarea'
+										data-testid='edit-name'
 										value={editName}
 										onChange={e => setEditName(e.target.value)}
 									/>	

@@ -46,57 +46,59 @@ const Content = ({ items, setItems }) => {
 					race,
 					id,
 				}, index) => (
-					<div className='card pt-3 m-2 col-sm-6 col-md-3' key={id}>
-						<img className='card-img-top'  src={card_images[0].image_url} alt={name} />
-						<div className='card-body'>
-							{editActive === index ? (
-								<h5 className='card-title'>
-									Name:
-									<input
-										type='textarea'
-										data-testid='edit-name'
-										value={editName}
-										onChange={e => setEditName(e.target.value)}
-									/>	
-								</h5>
-							) : <h5 className='card-title'>{name}</h5>}
-							<div className='card-text p-1'>
-								<span>Type: </span>
-								{type}
+					<div className='col-sm-6 col-md-3 pt-3'>
+						<div className='card m-2' key={id}>
+							<img className='card-img-top p-2' src={card_images[0].image_url} alt={name} />
+							<div className='card-body'>
+								{editActive === index ? (
+									<h5 className='card-title'>
+										Name:
+										<input
+											type='textarea'
+											data-testid='edit-name'
+											value={editName}
+											onChange={e => setEditName(e.target.value)}
+										/>	
+									</h5>
+								) : <h5 className='card-title'>{name}</h5>}
+								<div className='card-text p-1'>
+									<span>Type: </span>
+									{type}
+								</div>
+								<div className='card-text p-1'>
+									<span>Race: </span>
+									{race}
+								</div>
+								<div className='card-text p-1' title={desc} >
+									<span>Description: </span>
+									{truncateDesc(desc)}
+								</div>
 							</div>
-							<div className='card-text p-1'>
-								<span>Race: </span>
-								{race}
-							</div>
-							<div className='card-text p-1' title={desc} >
-								<span>Description: </span>
-								{truncateDesc(desc)}
-							</div>
-						</div>
-						<div className='row p-2 justify-content-center'>
-							{editActive !== index ? (
+							<div className='row p-2 justify-content-center'>
+								{editActive !== index ? (
+									<div
+										onClick={() => {
+											setEditActive(index);
+											setEditName(name);
+										}}
+										className='col-2'
+									>
+										<img className='action' src={Edit} alt='edit' />
+									</div>
+								) :
+									<div
+										onClick={() => updateCard(index)}
+										className='col-2'
+									>
+										<img className='action' src={Confirm} alt='confirm' />
+									</div>
+								}
 								<div
-									onClick={() => {
-										setEditActive(index);
-										setEditName(name);
-									}}
+									onClick={() => removeItem(index)}
 									className='col-2'
 								>
-									<img className='action' src={Edit} alt='edit' />
+									<img className='action' src={Delete} alt='delete' />
 								</div>
-							) :
-								<div
-									onClick={() => updateCard(index)}
-									className='col-2'
-								>
-									<img className='action' src={Confirm} alt='confirm' />
-								</div>
-							}
-							<div
-								onClick={() => removeItem(index)}
-								className='col-2'
-							>
-								<img className='action' src={Delete} alt='delete' />
 							</div>
 						</div>
 					</div>
